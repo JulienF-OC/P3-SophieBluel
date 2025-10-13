@@ -26,3 +26,23 @@ function setFigure(data) {
 
   document.querySelector(".gallery").append(figure);
 }
+
+async function getCategories() {
+  const url = "http://localhost:5678/api/categories";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Respsonse status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    console.log(json);
+    for (let i = 0; i < json.length; i++) {
+      setFigure(json[i]);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+getCategories();
