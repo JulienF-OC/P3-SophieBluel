@@ -112,6 +112,11 @@ ol,
 ul {
   list-style: none;
 }
+
+a {
+  text-decoration: none;
+}
+
 blockquote,
 q {
   quotes: none;
@@ -172,6 +177,11 @@ nav ul {
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
+}
+
+nav li a {
+  text-decoration: none;
+  color: black;
 }
 
 li:hover {
@@ -284,4 +294,14 @@ footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 2em;
+}
+
+.login h3 {
+  display: flex;
+  color: #1d6154;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Syne";
+  justify-content: center;
+  padding-top: 100px;
 }
