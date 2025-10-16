@@ -90,6 +90,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  background-color: #fffef8;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -304,6 +305,7 @@ footer nav ul {
   font-family: "Syne";
   justify-content: center;
   padding-top: 100px;
+  margin-bottom: 30px;
 }
 
 .log-form {
@@ -318,6 +320,8 @@ footer nav ul {
   height: 50px;
   justify-content: center;
   margin-bottom: 25px;
+  border: none;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.09);
 }
 
 .form-content {
@@ -331,5 +335,33 @@ footer nav ul {
   font-size: 15px;
   font-weight: 500;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+}
+
+.login-btn {
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 20px;
+  width: 180px;
+  height: 36px;
+  background-color: #1d6154;
+  color: white;
+  border-radius: 25px;
+  justify-content: center;
+  margin-left: 90px;
+}
+
+.form-content a {
+  color: #3d3d3d;
+  text-decoration: underline;
+  margin-top: 25px;
+  margin-left: 110px;
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.login-li {
+  font-weight: 700;
 }
