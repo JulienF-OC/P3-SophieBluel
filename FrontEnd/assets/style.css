@@ -305,3 +305,31 @@ footer nav ul {
   justify-content: center;
   padding-top: 100px;
 }
+
+.log-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.log-form input {
+  display: flex;
+  width: 380px;
+  height: 50px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.log-form label {
+  font-family: "Work Sans";
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
