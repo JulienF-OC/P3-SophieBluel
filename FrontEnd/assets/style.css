@@ -306,6 +306,7 @@ footer nav ul {
   justify-content: center;
   padding-top: 100px;
   margin-bottom: 30px;
+  margin-left: -35px;
 }
 
 .log-form {
