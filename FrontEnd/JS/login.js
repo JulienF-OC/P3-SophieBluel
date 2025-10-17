@@ -38,3 +38,30 @@ form.addEventListener("submit", async (event) => {
     console.error(error);
   }
 });
+
+const token = localStorage.getItem("token");
+
+if (token) {
+  console.log("Connexion utilisateur réussie");
+  afficherModeEdition();
+} else {
+  console.log("Echec de la connexion utilisateur");
+}
+
+function afficherModeEdition() {
+  const body = document.querySelector("body");
+
+  // Bande noire en haut
+  const banner = document.createElement("div");
+  banner.classList.add("edit-mode-banner");
+  banner.textContent = "Mode édition";
+  body.prepend(banner);
+
+  // Modifier le lien login en logout
+  const loginLink = document.querySelector(".login-li");
+  loginLink.textContent = "Logout";
+  loginLink.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  });
+}
