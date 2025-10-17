@@ -12,6 +12,7 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <script src="JS/login.js" defer></script>
   </head>
   <body>
     <header>
@@ -27,18 +28,20 @@
     </header>
     <main>
         <section class="login">
-            <h3>Log In</h3>
-            <div class="connexion">
-                <form class="log-form" method="post" action="#">
-                    <div class="form-content">
-                    <label id="email">Email</label>
-                    <input type="email" id="email">
-                    <label id="password">Mot de Passe</label>
-                    <input type="password" id="password">
-                    <button type="submit" class="login-btn">Se connecter</button>
-                    <a href="#">Mot de passe oublié</a>
-                    </div>
-                </form>
+  <h3>Log In</h3>
+  <div class="connexion">
+    <form class="log-form" method="post" action="#">
+      <div class="form-content">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        
+        <label for="password">Mot de Passe</label>
+        <input type="password" id="password" required>
+        
+        <button type="submit" class="login-btn">Se connecter</button>
+        <a href="#">Mot de passe oublié</a>
+      </div>
+    </form>
             </div>
         </section>
     </main>
