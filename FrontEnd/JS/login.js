@@ -59,7 +59,7 @@ function afficherModeEdition() {
 
   // Modifier le lien login en logout
   const loginLink = document.querySelector(".login-li");
-  loginLink.textContent = "Logout";
+  loginLink.textContent = "Log out";
   loginLink.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.reload();
