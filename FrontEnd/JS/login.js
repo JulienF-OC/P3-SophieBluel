@@ -54,7 +54,16 @@ function afficherModeEdition() {
   // Bande noire en haut
   const banner = document.createElement("div");
   banner.classList.add("edit-mode-banner");
-  banner.textContent = "Mode édition";
+
+  const icon = document.createElement("span");
+  icon.classList.add("edit-icon");
+  icon.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+
+  const text = document.createElement("span");
+  text.textContent = "Mode édition";
+
+  banner.appendChild(icon);
+  banner.appendChild(text);
   body.prepend(banner);
 
   // Modifier le lien login en logout
@@ -63,5 +72,10 @@ function afficherModeEdition() {
   loginLink.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.reload();
+
+    const projetModif = document.createElement("div");
+    projetModif.classList.add("modif-projet");
+    projetModif.textContent = "modifier";
+    document.getElementById("Portfolio").append(projetModif);
   });
 }

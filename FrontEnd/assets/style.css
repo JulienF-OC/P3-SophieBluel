@@ -368,4 +368,14 @@ footer nav ul {
 }
 
 .edit-mode-banner {
+  position: relative;
+  left: 50%;
+  width: 100vw; /* largeur de la fenêtre */
+  margin-left: -50vw; /* décale pour contrer le centrage du body */
+  background-color: black;
+  color: #fffef8;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

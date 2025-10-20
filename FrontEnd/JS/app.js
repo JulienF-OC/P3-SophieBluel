@@ -79,12 +79,15 @@ getWorks();
 getCategories();
 
 const token = localStorage.getItem("token");
+const icon = document.getElementById("userIcon");
 
 if (token) {
   console.log("Connexion utilisateur réussie");
   afficherModeEdition();
+  icon.style.display = "inline";
 } else {
   console.log("Echec de la connexion utilisateur");
+  icon.style.display = "none";
 }
 
 function afficherModeEdition() {
