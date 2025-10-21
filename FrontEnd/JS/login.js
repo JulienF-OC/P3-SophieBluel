@@ -55,13 +55,6 @@ function afficherModeEdition() {
   const banner = document.createElement("div");
   banner.classList.add("edit-mode-banner");
 
-  const icon = document.createElement("span");
-  icon.classList.add("edit-icon");
-  icon.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-
-  const text = document.createElement("span");
-  text.textContent = "Mode édition";
-
   banner.appendChild(icon);
   banner.appendChild(text);
   body.prepend(banner);

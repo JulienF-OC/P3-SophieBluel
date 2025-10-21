@@ -367,7 +367,7 @@ footer nav ul {
   font-weight: 700;
 }
 
-.edit-mode-banner {
+.edit-mode {
   position: relative;
   left: 50%;
   width: 100vw; /* largeur de la fenêtre */

@@ -82,32 +82,19 @@ const token = localStorage.getItem("token");
 
 if (token) {
   console.log("Connexion utilisateur réussie");
-  afficherModeEdition();
+  afficherLogOut();
+  document.querySelector(".edit-mode").style.display = "flex";
+  document.querySelector(".modif-projet").style.display = "inline";
 } else {
   console.log("Echec de la connexion utilisateur");
 }
 
-function afficherModeEdition() {
-  const body = document.querySelector("body");
-
-  // Bande noire en haut
-  const banner = document.createElement("div");
-  banner.classList.add("edit-mode-banner");
-
-  banner.appendChild(icon);
-  banner.appendChild(text);
-  body.prepend(banner);
-
+function afficherLogOut() {
   // Modifier le lien login en logout
   const loginLink = document.querySelector(".login-li");
   loginLink.textContent = "Log out";
   loginLink.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.reload();
-
-    const projetModif = document.createElement("div");
-    projetModif.classList.add("modif-projet");
-    projetModif.textContent = "modifier";
-    document.getElementById("Portfolio").append(projetModif);
   });
 }

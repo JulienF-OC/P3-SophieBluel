@@ -22,11 +22,12 @@
     />
   </head>
   <body>
-    <i
-      id="userIcon"
-      class="fa-solid fa-pen-to-square"
-      style="display: none"
-    ></i>
+    <div class="edit-mode" style="display: none">
+      <span class="edit-icon"
+        ><i id="userIcon" class="fa-solid fa-pen-to-square"></i
+      ></span>
+      <span class="edit-span">Mode Edition</span>
+    </div>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
@@ -63,7 +64,10 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <h2>
+          Mes Projets
+          <span class="modif-projet" style="display: none">modifier</span>
+        </h2>
         <div class="div-container"></div>
         <div class="gallery"></div>
       </section>
