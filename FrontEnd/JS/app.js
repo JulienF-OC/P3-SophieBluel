@@ -79,15 +79,12 @@ getWorks();
 getCategories();
 
 const token = localStorage.getItem("token");
-const icon = document.getElementById("userIcon");
 
 if (token) {
   console.log("Connexion utilisateur réussie");
   afficherModeEdition();
-  icon.style.display = "inline";
 } else {
   console.log("Echec de la connexion utilisateur");
-  icon.style.display = "none";
 }
 
 function afficherModeEdition() {
@@ -96,7 +93,9 @@ function afficherModeEdition() {
   // Bande noire en haut
   const banner = document.createElement("div");
   banner.classList.add("edit-mode-banner");
-  banner.textContent = "Mode édition";
+
+  banner.appendChild(icon);
+  banner.appendChild(text);
   body.prepend(banner);
 
   // Modifier le lien login en logout
@@ -105,5 +104,10 @@ function afficherModeEdition() {
   loginLink.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.reload();
+
+    const projetModif = document.createElement("div");
+    projetModif.classList.add("modif-projet");
+    projetModif.textContent = "modifier";
+    document.getElementById("Portfolio").append(projetModif);
   });
 }
