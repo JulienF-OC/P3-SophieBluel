@@ -373,9 +373,40 @@ footer nav ul {
   width: 100vw; /* largeur de la fenêtre */
   margin-left: -50vw; /* décale pour contrer le centrage du body */
   background-color: black;
-  color: #fffef8;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+}
+
+.edit-span {
+  color: #fff;
+  background-color: black;
+}
+
+.edit-icon {
+  background-color: black;
+  height: 16px;
+  width: 16px;
+}
+
+.modif-proj {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  justify-content: center;
+}
+
+.modif-proj h2 {
+  margin: 0;
+}
+
+.edit-project {
+  font-size: 14px;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
 }

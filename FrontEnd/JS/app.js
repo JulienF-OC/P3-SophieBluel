@@ -84,7 +84,7 @@ if (token) {
   console.log("Connexion utilisateur réussie");
   afficherLogOut();
   document.querySelector(".edit-mode").style.display = "flex";
-  document.querySelector(".modif-projet").style.display = "inline";
+  document.querySelector(".edit-project").style.display = "inline";
 } else {
   console.log("Echec de la connexion utilisateur");
 }
