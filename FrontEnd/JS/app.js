@@ -137,6 +137,7 @@ function setFigureModale(data, container) {
 
   figure.innerHTML = `
     <img src="${data.imageUrl}" alt="${data.title}" />
+    <i class="fa-solid fa-trash-can btn-delete" data-id="${data.id}"></i>
   `;
 
   container.appendChild(figure);
