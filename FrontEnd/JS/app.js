@@ -98,3 +98,46 @@ function afficherLogOut() {
     window.location.reload();
   });
 }
+
+const modale = document.getElementById("modaleProjets");
+const ouvrir = document.getElementById("ouvrirModale");
+const fermer = document.getElementById("fermerModale");
+const modaleForm = document.getElementById("ajoutForm");
+const modaleGallery = document.getElementById("gallery-modale");
+
+document.getElementById("ouvrirModale").addEventListener("click", () => {
+  const modale = document.getElementById("modaleProjets");
+  modale.showModal();
+  getWorksModale(); // 🔥 charge les works à l'ouverture
+});
+fermer.addEventListener("click", () => modale.close());
+
+async function getWorksModale() {
+  const urlWorks = "http://localhost:5678/api/works";
+  try {
+    const response = await fetch(urlWorks);
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+    const allWorks = await response.json();
+    displayWorksModale(allWorks);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+function displayWorksModale(works) {
+  const galleryModale = document.querySelector("#gallery-modale"); // ID dans ton HTML
+  galleryModale.innerHTML = ""; // vide avant de réafficher
+
+  works.forEach((work) => setFigureModale(work, galleryModale));
+}
+
+function setFigureModale(data, container) {
+  const figure = document.createElement("figure");
+  figure.classList.add("figure-modale");
+
+  figure.innerHTML = `
+    <img src="${data.imageUrl}" alt="${data.title}" />
+  `;
+
+  container.appendChild(figure);
+}
