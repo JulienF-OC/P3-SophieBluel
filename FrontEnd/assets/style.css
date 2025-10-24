@@ -185,6 +185,11 @@ nav li a {
   color: black;
 }
 
+nav li img {
+  width: 20px;
+  height: 20px;
+}
+
 li:hover {
   color: #b1663c;
 }
@@ -365,7 +370,7 @@ footer nav ul {
 }
 
 .login-li {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .edit-mode {
@@ -378,7 +383,7 @@ footer nav ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .edit-span {
@@ -411,4 +416,10 @@ footer nav ul {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.edit-icon .fa-solid {
+  color: #fff;
+  background-color: black;
+  font-weight: 100;
 }
