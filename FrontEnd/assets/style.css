@@ -391,12 +391,6 @@ footer nav ul {
   background-color: black;
 }
 
-.edit-icon {
-  background-color: black;
-  height: 16px;
-  width: 16px;
-}
-
 .modif-proj {
   display: flex;
   justify-content: center;
@@ -422,4 +416,6 @@ footer nav ul {
   color: #fff;
   background-color: black;
   font-weight: 100;
+  height: 16px;
+  width: 16px;
 }
