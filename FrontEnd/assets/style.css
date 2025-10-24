@@ -436,7 +436,8 @@ footer nav ul {
   border: none;
   background: none;
   cursor: pointer;
-  color: #333;
+  color: black;
+  height: 12px;
 }
 
 dialog h3 {
