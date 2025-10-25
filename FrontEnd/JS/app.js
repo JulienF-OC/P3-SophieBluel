@@ -131,14 +131,50 @@ function displayWorksModale(works) {
   works.forEach((work) => setFigureModale(work, galleryModale));
 }
 
-function setFigureModale(data, container) {
+function setFigureModale(data) {
   const figure = document.createElement("figure");
   figure.classList.add("figure-modale");
 
   figure.innerHTML = `
-    <img src="${data.imageUrl}" alt="${data.title}" />
-    <i class="fa-solid fa-trash-can btn-delete" data-id="${data.id}"></i>
+    <img src="${data.imageUrl}" alt="${data.title}">
+    <button class="delete-btn" data-id="${data.id}">
+      <i class="fa-solid fa-trash-can"></i>
+    </button>
   `;
 
-  container.appendChild(figure);
+  // Ajout du comportement de suppression
+  figure.querySelector(".delete-btn").addEventListener("click", () => {
+    deleteWork(data.id);
+  });
+
+  document.querySelector("#gallery-modale").append(figure);
+}
+
+async function deleteWork(id) {
+  const token = localStorage.getItem("token"); // récupère ton token sauvegardé après login
+
+  if (!token) {
+    alert("Vous devez être connecté pour supprimer un projet.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        accept: "*/*",
+      },
+    });
+
+    if (response.ok) {
+      console.log(`Projet ${id} supprimé avec succès.`);
+      // tu peux rafraîchir la galerie ici :
+      getWorksModale(); // ou ta fonction principale d’affichage
+    } else {
+      console.error(`Erreur: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Erreur lors de la suppression:", error);
+  }
 }

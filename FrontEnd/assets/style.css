@@ -493,7 +493,7 @@ dialog h3 {
   border-radius: 4px;
 }
 
-#gallery-modale .btn-delete {
+#gallery-modale .delete-btn {
   position: absolute;
   top: 5px;
   right: 15px;
