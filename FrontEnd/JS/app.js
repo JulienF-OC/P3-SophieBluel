@@ -218,6 +218,7 @@ ajouterPhotoBtn.addEventListener("click", () => {
   galleryModale.style.display = "none";
   ajouterPhotoBtn.style.display = "none";
   ajoutForm.style.display = "block";
+  modaleTitre.textContent = "Ajout photo";
   remplirCategoriesForm();
 });
 
@@ -225,12 +226,14 @@ retourGalerie.addEventListener("click", () => {
   ajoutForm.style.display = "none";
   galleryModale.style.display = "grid";
   ajouterPhotoBtn.style.display = "block";
+  modaleTitre.textContent = "Galerie photo";
 });
 
 // --- Écoute de la soumission du formulaire ---
 ajoutForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const modaleTitre = document.getElementById("modaleTitre");
   const imageInput = document.getElementById("image");
   const titreInput = document.getElementById("titre");
   const categorySelect = document.getElementById("category");
