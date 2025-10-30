@@ -619,6 +619,7 @@ dialog h3 {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   margin-left: 85px;
+  background: #fff;
 }
 
 .categoryFormAdd {
@@ -636,4 +637,21 @@ dialog h3 {
   color: #b3b3b3;
   margin-bottom: 50px;
   margin-top: 60px;
+}
+
+.modaleAdd {
+  background-color: #a7a7a7;
+  width: 237px;
+  height: 36px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Syne";
+  border-radius: 25px;
+  display: flex;
+  justify-content: center; /* centre horizontalement le texte */
+  align-items: center; /* centre verticalement le texte */
+  border: none;
+  cursor: pointer;
+  margin: 30px auto 0 auto;
 }
