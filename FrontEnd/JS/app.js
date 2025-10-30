@@ -218,6 +218,7 @@ ajouterPhotoBtn.addEventListener("click", () => {
   galleryModale.style.display = "none";
   ajouterPhotoBtn.style.display = "none";
   ajoutForm.style.display = "block";
+  remplirCategoriesForm();
 });
 
 retourGalerie.addEventListener("click", () => {
@@ -251,3 +252,26 @@ ajoutForm.addEventListener("submit", async (e) => {
   galleryModale.style.display = "grid";
   ajouterPhotoBtn.style.display = "block";
 });
+
+async function remplirCategoriesForm() {
+  try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    if (!response.ok) throw new Error(`Erreur: ${response.status}`);
+
+    const categories = await response.json();
+    const select = document.getElementById("category");
+
+    // Vider d'abord les anciennes options (sauf la première "-- Choisir une catégorie --")
+    select.innerHTML = '<option value="">-- Choisir une catégorie --</option>';
+
+    // Ajouter les catégories récupérées depuis l’API
+    categories.forEach((cat) => {
+      const option = document.createElement("option");
+      option.value = cat.id;
+      option.textContent = cat.name;
+      select.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Erreur lors du chargement des catégories:", error);
+  }
+}
