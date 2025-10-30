@@ -75,7 +75,11 @@
           <h3 id="modaleTitre">Galerie photo</h3>
 
           <div id="gallery-modale"></div>
-          <hr class="modaleSeparation" />
+          <hr
+            id="separationModale"
+            class="modaleSeparation"
+            style="display: block"
+          />
           <button id="ajouterPhotoBtn" class="btn-ajouter-photo">
             Ajouter une photo
           </button>
@@ -86,7 +90,22 @@
               ← Retour
             </button>
 
-            <input type="file" id="image" accept="image/*" required />
+            <div class="upload-zone" id="uploadZone">
+              <i class="fa-regular fa-image"></i>
+              <button type="button" id="btnParcourir">+ Ajouter photo</button>
+              <p>jpg, png : 4mo max</p>
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                required
+                style="display: none"
+              />
+            </div>
+            <img
+              id="previewImage"
+              style="display: none; max-width: 100%; border-radius: 10px"
+            />
             <input type="text" id="titre" placeholder="Titre" required />
             <select id="category" required>
               <option value="">-- Choisir une catégorie --</option>

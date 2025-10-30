@@ -219,6 +219,12 @@ ajouterPhotoBtn.addEventListener("click", () => {
   ajouterPhotoBtn.style.display = "none";
   ajoutForm.style.display = "block";
   modaleTitre.textContent = "Ajout photo";
+  const uploadZone = document.getElementById("uploadZone");
+  const btnParcourir = document.getElementById("btnParcourir");
+  const inputImage = document.getElementById("image");
+  const previewImage = document.getElementById("previewImage");
+  const separationModale = document.getElementById("separationModale");
+  separationModale.style.display = "none";
   remplirCategoriesForm();
 });
 
