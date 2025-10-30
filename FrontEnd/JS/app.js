@@ -233,6 +233,7 @@ retourGalerie.addEventListener("click", () => {
   galleryModale.style.display = "grid";
   ajouterPhotoBtn.style.display = "block";
   modaleTitre.textContent = "Galerie photo";
+  separationModale.style.display = "block";
 });
 
 // --- Écoute de la soumission du formulaire ---
