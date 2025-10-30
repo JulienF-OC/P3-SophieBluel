@@ -271,7 +271,7 @@ async function remplirCategoriesForm() {
     const select = document.getElementById("category");
 
     // Vider d'abord les anciennes options (sauf la première "-- Choisir une catégorie --")
-    select.innerHTML = '<option value="">-- Choisir une catégorie --</option>';
+    select.innerHTML = '<option value=""></option>';
 
     // Ajouter les catégories récupérées depuis l’API
     categories.forEach((cat) => {

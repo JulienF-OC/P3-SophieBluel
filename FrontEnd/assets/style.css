@@ -534,6 +534,10 @@ dialog h3 {
   padding: 20px;
   gap: 10px;
   position: relative;
+  text-align: center;
+  width: 420px;
+  height: 120px;
+  margin-left: 83px;
 }
 
 .upload-zone i {
@@ -551,9 +555,13 @@ dialog h3 {
   color: white;
   border: none;
   border-radius: 25px;
-  padding: 8px 20px;
+  padding: 14px 20px;
   font-size: 14px;
   cursor: pointer;
+  font-family: "Work Sans";
+  color: #306685;
+  font-weight: 500;
+  width: 173px;
 }
 
 .upload-zone p {
@@ -568,4 +576,64 @@ dialog h3 {
   max-height: 200px;
   border-radius: 5px;
   object-fit: contain;
+}
+
+.retour-btn {
+  position: absolute;
+  top: 23px;
+  left: 20px;
+  font-size: 23px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black;
+  height: 12px;
+  font-weight: 700;
+}
+
+#titre {
+  height: 50px;
+  width: 420px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-left: 85px;
+  margin-bottom: 25px;
+}
+
+.titreFormAdd {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.titreFormAdd label {
+  margin-left: 85px;
+  margin-bottom: 15px;
+}
+
+#category {
+  height: 50px;
+  width: 420px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-left: 85px;
+}
+
+.categoryFormAdd {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryFormAdd label {
+  margin-left: 85px;
+  margin-bottom: 15px;
+}
+
+.separationFormAdd {
+  width: 420px;
+  color: #b3b3b3;
+  margin-bottom: 50px;
+  margin-top: 60px;
 }

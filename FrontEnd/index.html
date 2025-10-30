@@ -87,7 +87,7 @@
           <!-- Formulaire d'ajout, caché au départ -->
           <form id="ajoutForm" class="formAjout" style="display: none">
             <button type="button" id="retourGalerie" class="retour-btn">
-              ← Retour
+              <i class="fa-solid fa-arrow-left"></i>
             </button>
             <div class="upload-zone">
               <i class="fa-regular fa-image"></i>
@@ -96,10 +96,17 @@
               <p>jpg, png : 4Mo max</p>
               <img id="preview" alt="Aperçu" style="display: none" />
             </div>
-            <input type="text" id="titre" placeholder="Titre" required />
-            <select id="category" required>
-              <option value="">-- Choisir une catégorie --</option>
-            </select>
+            <div class="titreFormAdd">
+              <label for="titre">Titre</label>
+              <input type="text" id="titre" class="titreAddForm" required />
+            </div>
+            <div class="categoryFormAdd">
+              <label for="category">Catégorie</label>
+              <select id="category" required>
+                <option value=""></option>
+              </select>
+            </div>
+            <hr class="separationFormAdd" />
             <button type="submit" class="modaleAdd">Valider</button>
           </form>
         </dialog>
