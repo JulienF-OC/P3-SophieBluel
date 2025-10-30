@@ -518,3 +518,54 @@ dialog h3 {
   line-height: 1;
   background-color: black;
 }
+
+.formAjout {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-zone {
+  background-color: #e8f1f6; /* gris très clair bleuté comme sur la maquette */
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+  position: relative;
+}
+
+.upload-zone i {
+  font-size: 66px;
+  color: #b9c5cc;
+  background: none;
+}
+
+.upload-zone input[type="file"] {
+  display: none; /* on masque le vrai input */
+}
+
+.upload-zone .btn-upload {
+  background-color: #b9c5cc;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.upload-zone p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+  background: none;
+}
+
+#preview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 5px;
+  object-fit: contain;
+}

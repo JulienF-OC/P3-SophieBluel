@@ -85,27 +85,17 @@
           </button>
 
           <!-- Formulaire d'ajout, caché au départ -->
-          <form id="ajoutForm" style="display: none">
+          <form id="ajoutForm" class="formAjout" style="display: none">
             <button type="button" id="retourGalerie" class="retour-btn">
               ← Retour
             </button>
-
-            <div class="upload-zone" id="uploadZone">
+            <div class="upload-zone">
               <i class="fa-regular fa-image"></i>
-              <button type="button" id="btnParcourir">+ Ajouter photo</button>
-              <p>jpg, png : 4mo max</p>
-              <input
-                type="file"
-                id="image"
-                accept="image/*"
-                required
-                style="display: none"
-              />
+              <label for="image" class="btn-upload">+ Ajouter photo</label>
+              <input type="file" id="image" accept="image/*" required />
+              <p>jpg, png : 4Mo max</p>
+              <img id="preview" alt="Aperçu" style="display: none" />
             </div>
-            <img
-              id="previewImage"
-              style="display: none; max-width: 100%; border-radius: 10px"
-            />
             <input type="text" id="titre" placeholder="Titre" required />
             <select id="category" required>
               <option value="">-- Choisir une catégorie --</option>
