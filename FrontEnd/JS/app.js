@@ -178,3 +178,76 @@ async function deleteWork(id) {
     console.error("Erreur lors de la suppression:", error);
   }
 }
+
+async function addWork(formData) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Vous devez être connecté pour ajouter un projet.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        accept: "*/*",
+      },
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log("Projet ajouté avec succès.");
+      getWorksModale(); // rafraîchir la galerie
+    } else {
+      console.error(`Erreur: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'ajout :", error);
+  }
+}
+
+const ajoutForm = document.getElementById("ajoutForm");
+const ajouterPhotoBtn = document.getElementById("ajouterPhotoBtn");
+
+// --- Gestion du bouton "Ajouter une photo" et du formulaire ---
+const galleryModale = document.getElementById("gallery-modale");
+const retourGalerie = document.getElementById("retourGalerie");
+
+ajouterPhotoBtn.addEventListener("click", () => {
+  galleryModale.style.display = "none";
+  ajouterPhotoBtn.style.display = "none";
+  ajoutForm.style.display = "block";
+});
+
+retourGalerie.addEventListener("click", () => {
+  ajoutForm.style.display = "none";
+  galleryModale.style.display = "grid";
+  ajouterPhotoBtn.style.display = "block";
+});
+
+// --- Écoute de la soumission du formulaire ---
+ajoutForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const imageInput = document.getElementById("image");
+  const titreInput = document.getElementById("titre");
+  const categorySelect = document.getElementById("category");
+
+  if (!imageInput.files[0] || !titreInput.value || !categorySelect.value) {
+    alert("Veuillez remplir tous les champs avant de valider.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("image", imageInput.files[0]);
+  formData.append("title", titreInput.value);
+  formData.append("category", categorySelect.value);
+
+  await addWork(formData);
+
+  ajoutForm.reset();
+  ajoutForm.style.display = "none";
+  galleryModale.style.display = "grid";
+  ajouterPhotoBtn.style.display = "block";
+});

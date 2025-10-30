@@ -76,25 +76,26 @@
 
           <div id="gallery-modale"></div>
           <hr class="modaleSeparation" />
-          <button type="submit" class="modaleAdd">Ajouter une photo</button>
-          <div class="modale-add" style="display: none">
-            <button id="backToGallery" class="back-btn">
-              <i class="fa-solid fa-arrow-left"></i>
-            </button>
-            <h3>Ajout d’un projet</h3>
+          <button id="ajouterPhotoBtn" class="btn-ajouter-photo">
+            Ajouter une photo
+          </button>
 
-            <form id="ajoutForm">
-              <input type="file" id="image" accept="image/*" required />
-              <input type="text" id="titre" placeholder="Titre" required />
-              <select id="category" required>
-                <option value="">-- Choisir une catégorie --</option>
-                <option value="1">Objets</option>
-                <option value="2">Appartements</option>
-                <option value="3">Hôtels & Restaurants</option>
-              </select>
-              <button type="submit" class="modaleAdd">Valider</button>
-            </form>
-          </div>
+          <!-- Formulaire d'ajout, caché au départ -->
+          <form id="ajoutForm" style="display: none">
+            <button type="button" id="retourGalerie" class="retour-btn">
+              ← Retour
+            </button>
+
+            <input type="file" id="image" accept="image/*" required />
+            <input type="text" id="titre" placeholder="Titre" required />
+            <select id="category" required>
+              <option value="">-- Choisir une catégorie --</option>
+              <option value="1">Objets</option>
+              <option value="2">Appartements</option>
+              <option value="3">Hôtels & Restaurants</option>
+            </select>
+            <button type="submit" class="modaleAdd">Valider</button>
+          </form>
         </dialog>
         <div class="div-container"></div>
         <div class="gallery"></div>
