@@ -497,12 +497,9 @@ dialog h3 {
   position: absolute;
   top: 5px;
   right: 15px;
-  color: #fff;
   background-color: black;
   border-radius: 3px;
   padding: 5px;
-  font-size: 10px;
   cursor: pointer;
-  transition: background-color 0.2s;
-  width: 9px;
+  width: 17px;
 }
