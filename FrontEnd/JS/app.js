@@ -219,13 +219,29 @@ ajouterPhotoBtn.addEventListener("click", () => {
   ajouterPhotoBtn.style.display = "none";
   ajoutForm.style.display = "block";
   modaleTitre.textContent = "Ajout photo";
-  const uploadZone = document.getElementById("uploadZone");
-  const btnParcourir = document.getElementById("btnParcourir");
-  const inputImage = document.getElementById("image");
-  const previewImage = document.getElementById("previewImage");
   const separationModale = document.getElementById("separationModale");
   separationModale.style.display = "none";
   remplirCategoriesForm();
+});
+
+const uploadZone = document.getElementById("uploadZone");
+const btnParcourir = document.getElementById("btnParcourir");
+const inputImage = document.getElementById("image");
+const previewImage = document.getElementById("preview");
+
+inputImage.addEventListener("change", () => {
+  const file = inputImage.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      preview.src = e.target.result;
+      preview.style.display = "block"; // montre la preview
+      uploadZone.querySelector("i").style.display = "none"; // cache l'icône
+      uploadZone.querySelector("label").style.display = "none"; // cache le bouton
+      uploadZone.querySelector("p").style.display = "none"; // cache le texte
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
 retourGalerie.addEventListener("click", () => {
@@ -234,6 +250,8 @@ retourGalerie.addEventListener("click", () => {
   ajouterPhotoBtn.style.display = "block";
   modaleTitre.textContent = "Galerie photo";
   separationModale.style.display = "block";
+  preview.src = "";
+  preview.style.display = "none";
 });
 
 // --- Écoute de la soumission du formulaire ---
