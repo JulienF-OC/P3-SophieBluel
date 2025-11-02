@@ -245,6 +245,7 @@ inputImage.addEventListener("change", () => {
 });
 
 retourGalerie.addEventListener("click", () => {
+  const uploadZone = document.querySelector(".upload-zone");
   ajoutForm.style.display = "none";
   galleryModale.style.display = "grid";
   ajouterPhotoBtn.style.display = "block";
@@ -252,6 +253,9 @@ retourGalerie.addEventListener("click", () => {
   separationModale.style.display = "block";
   preview.src = "";
   preview.style.display = "none";
+  preview.src = "";
+  preview.style.display = "none";
+  uploadZone.classList.remove("preview-active");
 });
 
 // --- Écoute de la soumission du formulaire ---
