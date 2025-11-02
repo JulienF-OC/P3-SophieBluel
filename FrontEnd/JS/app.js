@@ -289,10 +289,8 @@ async function remplirCategoriesForm() {
     const categories = await response.json();
     const select = document.getElementById("category");
 
-    // Vider d'abord les anciennes options (sauf la première "-- Choisir une catégorie --")
     select.innerHTML = '<option value=""></option>';
 
-    // Ajouter les catégories récupérées depuis l’API
     categories.forEach((cat) => {
       const option = document.createElement("option");
       option.value = cat.id;
@@ -303,3 +301,17 @@ async function remplirCategoriesForm() {
     console.error("Erreur lors du chargement des catégories:", error);
   }
 }
+
+inputImage.addEventListener("change", () => {
+  const file = inputImage.files[0];
+  const uploadZone = document.querySelector(".upload-zone");
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      preview.src = e.target.result;
+      preview.style.display = "block";
+      uploadZone.classList.add("preview-active");
+    };
+    reader.readAsDataURL(file);
+  }
+});

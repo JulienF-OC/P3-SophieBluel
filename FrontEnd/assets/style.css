@@ -538,6 +538,7 @@ dialog h3 {
   width: 420px;
   height: 120px;
   margin-left: 83px;
+  overflow: hidden;
 }
 
 .upload-zone i {
@@ -656,6 +657,26 @@ dialog h3 {
   margin: 30px auto 0 auto;
 }
 
-.upload-zone img {
-  height: 200px;
+#preview {
+  position: absolute;
+  top: 0;
+  width: 129px;
+  height: 193px;
+  object-fit: cover;
+  border-radius: 5px;
+  display: none;
+  z-index: 2;
+}
+
+.upload-zone.preview-active i,
+.upload-zone.preview-active label,
+.upload-zone.preview-active p {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.upload-zone i,
+.upload-zone label,
+.upload-zone p {
+  transition: opacity 0.3s ease;
 }
