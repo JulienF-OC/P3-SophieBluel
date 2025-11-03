@@ -681,6 +681,5 @@ dialog h3 {
   transition: opacity 0.3s ease;
 }
 
-.btn-check {
-  background-color: #1d6154;
+.modaleAdd.enabled {
 }
