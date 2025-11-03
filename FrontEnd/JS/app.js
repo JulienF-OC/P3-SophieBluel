@@ -31,7 +31,7 @@ async function getCategories() {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Response status: ${response.status}`);
     const json = await response.json();
-    setAllFilter(); // bouton "Tous"
+    setAllFilter();
     json.forEach((cat) => setDiv(cat));
   } catch (error) {
     console.error(error.message);
@@ -74,7 +74,6 @@ function setActiveFilter(selectedBtn) {
   selectedBtn.classList.add("active");
 }
 
-// 🚀 Initialisation
 getWorks();
 getCategories();
 
@@ -90,7 +89,6 @@ if (token) {
 }
 
 function afficherLogOut() {
-  // Modifier le lien login en logout
   const loginLink = document.querySelector(".login-li");
   loginLink.textContent = "Log out";
   loginLink.addEventListener("click", () => {
@@ -108,7 +106,7 @@ const modaleGallery = document.getElementById("gallery-modale");
 document.getElementById("ouvrirModale").addEventListener("click", () => {
   const modale = document.getElementById("modaleProjets");
   modale.showModal();
-  getWorksModale(); // 🔥 charge les works à l'ouverture
+  getWorksModale();
 });
 fermer.addEventListener("click", () => modale.close());
 
@@ -125,8 +123,8 @@ async function getWorksModale() {
 }
 
 function displayWorksModale(works) {
-  const galleryModale = document.querySelector("#gallery-modale"); // ID dans ton HTML
-  galleryModale.innerHTML = ""; // vide avant de réafficher
+  const galleryModale = document.querySelector("#gallery-modale");
+  galleryModale.innerHTML = "";
 
   works.forEach((work) => setFigureModale(work, galleryModale));
 }
@@ -142,7 +140,6 @@ function setFigureModale(data) {
     </button>
   `;
 
-  // Ajout du comportement de suppression
   figure.querySelector(".delete-btn").addEventListener("click", () => {
     deleteWork(data.id);
   });
@@ -151,7 +148,7 @@ function setFigureModale(data) {
 }
 
 async function deleteWork(id) {
-  const token = localStorage.getItem("token"); // récupère ton token sauvegardé après login
+  const token = localStorage.getItem("token");
 
   if (!token) {
     alert("Vous devez être connecté pour supprimer un projet.");
@@ -169,8 +166,7 @@ async function deleteWork(id) {
 
     if (response.ok) {
       console.log(`Projet ${id} supprimé avec succès.`);
-      // tu peux rafraîchir la galerie ici :
-      getWorksModale(); // ou ta fonction principale d’affichage
+      getWorksModale();
     } else {
       console.error(`Erreur: ${response.status}`);
     }
@@ -198,7 +194,7 @@ async function addWork(formData) {
 
     if (response.ok) {
       console.log("Projet ajouté avec succès.");
-      getWorksModale(); // rafraîchir la galerie
+      getWorksModale();
     } else {
       console.error(`Erreur: ${response.status}`);
     }
@@ -210,7 +206,6 @@ async function addWork(formData) {
 const ajoutForm = document.getElementById("ajoutForm");
 const ajouterPhotoBtn = document.getElementById("ajouterPhotoBtn");
 
-// --- Gestion du bouton "Ajouter une photo" et du formulaire ---
 const galleryModale = document.getElementById("gallery-modale");
 const retourGalerie = document.getElementById("retourGalerie");
 
@@ -235,10 +230,10 @@ inputImage.addEventListener("change", () => {
     const reader = new FileReader();
     reader.onload = (e) => {
       preview.src = e.target.result;
-      preview.style.display = "block"; // montre la preview
-      uploadZone.querySelector("i").style.display = "none"; // cache l'icône
-      uploadZone.querySelector("label").style.display = "none"; // cache le bouton
-      uploadZone.querySelector("p").style.display = "none"; // cache le texte
+      preview.style.display = "block";
+      uploadZone.querySelector("i").style.display = "none";
+      uploadZone.querySelector("label").style.display = "none";
+      uploadZone.querySelector("p").style.display = "none";
     };
     reader.readAsDataURL(file);
   }
@@ -258,7 +253,6 @@ retourGalerie.addEventListener("click", () => {
   uploadZone.classList.remove("preview-active");
 });
 
-// --- Écoute de la soumission du formulaire ---
 ajoutForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 

@@ -680,3 +680,7 @@ dialog h3 {
 .upload-zone p {
   transition: opacity 0.3s ease;
 }
+
+.btn-check {
+  background-color: #1d6154;
+}

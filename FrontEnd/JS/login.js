@@ -6,7 +6,6 @@ form.addEventListener("submit", async (event) => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  // Supprimer anciens messages d’erreur
   const oldError = document.querySelector(".error-message");
   if (oldError) oldError.remove();
 
