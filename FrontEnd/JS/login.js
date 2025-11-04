@@ -16,25 +16,26 @@ form.addEventListener("submit", async (event) => {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json();
-    console.log("Réponse API :", data);
+    if (response.status === 200) {
+      const data = await response.json();
+      console.log("Réponse API :", data);
 
-    if (!response.ok) {
-      throw new Error(data.message || "Identifiant ou mot de passe incorrect");
+      localStorage.setItem("token", data.token);
+      console.log("Token sauvegardé :", localStorage.getItem("token"));
+      window.location.href = "index.html";
+    } else if (response.status === 401) {
+      throw new Error(
+        "Erreur serveur (401) : Les éléments d'authentification sont incorrects"
+      );
+    } else if (response.status === 404) {
+      throw new Error(
+        "Erreur serveur (404) : L'adresse mail utilisée est incorrecte"
+      );
+    } else {
+      throw new Error(`Erreur inattendue (${response.status})`);
     }
-
-    localStorage.setItem("token", data.token);
-    console.log("Token sauvegardé :", localStorage.getItem("token"));
-
-    window.location.href = "index.html";
   } catch (error) {
-    const errorMsg = document.createElement("p");
-    errorMsg.textContent = error.message;
-    errorMsg.classList.add("error-message");
-    errorMsg.style.color = "red";
-    errorMsg.style.marginTop = "10px";
-    form.appendChild(errorMsg);
-    console.error(error);
+    console.error("Erreur :", error.message);
   }
 });
 
