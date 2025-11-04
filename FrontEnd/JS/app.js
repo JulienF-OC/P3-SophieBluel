@@ -19,7 +19,7 @@ async function getWorks() {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
-    console.error("🚨 Erreur :", error.message);
+    console.error(" Erreur :", error.message);
   }
 }
 
@@ -53,7 +53,7 @@ async function getCategories() {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
-    console.error("🚨 Erreur :", error.message);
+    console.error(" Erreur :", error.message);
   }
 }
 
@@ -134,14 +134,21 @@ async function getWorksModale() {
   const urlWorks = "http://localhost:5678/api/works";
   try {
     const response = await fetch(urlWorks);
-    if (!response.ok) throw new Error(`Response status: ${response.status}`);
-    const allWorks = await response.json();
-    displayWorksModale(allWorks);
+    if (response.status === 200) {
+      const allWorks = await response.json();
+      displayWorksModale(allWorks);
+    } else if (response.status === 500) {
+      throw new Error(
+        "Erreur serveur (500) : Une erreur interne est survenue."
+      );
+    } else {
+      // Pour tout autre code inattendu
+      throw new Error(`Erreur inattendue (${response.status})`);
+    }
   } catch (error) {
-    console.error(error.message);
+    console.error("Erreur :", error.message);
   }
 }
-
 function displayWorksModale(works) {
   const galleryModale = document.querySelector("#gallery-modale");
   galleryModale.innerHTML = "";
@@ -184,14 +191,22 @@ async function deleteWork(id) {
       },
     });
 
-    if (response.ok) {
+    if (response.status === 200) {
       console.log(`Projet ${id} supprimé avec succès.`);
       getWorksModale();
+    } else if (response.status === 401) {
+      throw new Error(
+        "Erreur serveur (401) : Vous n'êtes pas autorisé à supprimer cet élément."
+      );
+    } else if (response.status === 500) {
+      throw new Error(
+        "Erreur serveur (500) : Une erreur du serveur est survenue."
+      );
     } else {
-      console.error(`Erreur: ${response.status}`);
+      throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
-    console.error("Erreur lors de la suppression:", error);
+    console.error("Erreur :", error.message);
   }
 }
 
@@ -212,14 +227,26 @@ async function addWork(formData) {
       body: formData,
     });
 
-    if (response.ok) {
+    if (response.status === 201) {
       console.log("Projet ajouté avec succès.");
       getWorksModale();
+    } else if (response.status === 400) {
+      throw new Error(
+        "Erreur serveur (400) : Une erreur dans la requete est survenue."
+      );
+    } else if (response.status === 401) {
+      throw new Error(
+        "Erreur serveur (401) : Vous nêtes pas autorisé à ajouter un élément."
+      );
+    } else if (response.status === 500) {
+      throw new Error(
+        "Erreur serveur (500) : Une erreur du serveur est survenue."
+      );
     } else {
-      console.error(`Erreur: ${response.status}`);
+      throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
-    console.error("Erreur lors de l'ajout :", error);
+    console.error("Erreur :", error.message);
   }
 }
 
@@ -302,21 +329,28 @@ ajoutForm.addEventListener("submit", async (e) => {
 async function remplirCategoriesForm() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
-    if (!response.ok) throw new Error(`Erreur: ${response.status}`);
+    if (response.status === 200) {
+      const categories = await response.json();
+      const select = document.getElementById("category");
 
-    const categories = await response.json();
-    const select = document.getElementById("category");
+      select.innerHTML = '<option value=""></option>';
 
-    select.innerHTML = '<option value=""></option>';
-
-    categories.forEach((cat) => {
-      const option = document.createElement("option");
-      option.value = cat.id;
-      option.textContent = cat.name;
-      select.appendChild(option);
-    });
+      categories.forEach((cat) => {
+        const option = document.createElement("option");
+        option.value = cat.id;
+        option.textContent = cat.name;
+        select.appendChild(option);
+      });
+    } else if (response.status === 500) {
+      throw new Error(
+        "Erreur serveur (500) : Une erreur interne est survenue."
+      );
+    } else {
+      // Pour tout autre code inattendu
+      throw new Error(`Erreur inattendue (${response.status})`);
+    }
   } catch (error) {
-    console.error("Erreur lors du chargement des catégories:", error);
+    console.error("🚨 Erreur :", error.message);
   }
 }
 
