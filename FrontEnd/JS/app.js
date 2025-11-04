@@ -40,12 +40,20 @@ async function getCategories() {
   const url = "http://localhost:5678/api/categories";
   try {
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`Response status: ${response.status}`);
-    const json = await response.json();
-    setAllFilter();
-    json.forEach((cat) => setDiv(cat));
+    if (response.status === 200) {
+      const json = await response.json();
+      setAllFilter();
+      json.forEach((cat) => setDiv(cat));
+    } else if (response.status === 500) {
+      throw new Error(
+        "Erreur serveur (500) : Une erreur interne est survenue."
+      );
+    } else {
+      // Pour tout autre code inattendu
+      throw new Error(`Erreur inattendue (${response.status})`);
+    }
   } catch (error) {
-    console.error(error.message);
+    console.error("🚨 Erreur :", error.message);
   }
 }
 
