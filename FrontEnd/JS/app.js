@@ -4,11 +4,18 @@ async function getWorks() {
   const url = "http://localhost:5678/api/works";
   try {
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`Response status: ${response.status}`);
-    allWorks = await response.json();
-    displayWorks(allWorks);
+    if (response.status === 200) {
+      const allWorks = await response.json();
+      displayWorks(allWorks);
+    } else if (response.status === 500) {
+      throw new Error(
+        "Erreur serveur (500) : Une erreur interne est survenue."
+      );
+    } else {
+      throw new Error(`Erreur inattendue (${response.status})`);
+    }
   } catch (error) {
-    console.error(error.message);
+    console.error("Erreur :", error.message);
   }
 }
 
