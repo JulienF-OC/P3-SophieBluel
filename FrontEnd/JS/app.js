@@ -84,6 +84,7 @@ if (token) {
   afficherLogOut();
   document.querySelector(".edit-mode").style.display = "flex";
   document.querySelector(".edit-project").style.display = "inline";
+  document.querySelector(".div-container").style.display = "none";
 } else {
   console.log("Echec de la connexion utilisateur");
 }
