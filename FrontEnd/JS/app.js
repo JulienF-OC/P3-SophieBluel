@@ -193,7 +193,7 @@ async function deleteWork(id) {
       },
     });
 
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 204) {
       console.log(`Projet ${id} supprimé avec succès.`);
       getWorksModale();
       getWorks();
