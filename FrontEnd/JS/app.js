@@ -69,7 +69,7 @@ function setAllFilter() {
   container.appendChild(allBtn);
 }
 
-function setDiv(data) {
+function setFilter(data) {
   const div = document.createElement("div");
   div.textContent = data.name;
   div.dataset.id = data.id;
@@ -100,7 +100,7 @@ const token = localStorage.getItem("token");
 
 if (token) {
   console.log("Connexion utilisateur réussie");
-  afficherLogOut();
+  ShowLogOut();
   document.body.classList.add("connected");
   document.querySelector(".edit-mode").style.display = "flex";
   document.querySelector(".edit-project").style.display = "inline";
@@ -110,9 +110,9 @@ if (token) {
   document.body.classList.remove("connected");
 }
 
-function afficherLogOut() {
+function ShowLogOut() {
   const loginLink = document.querySelector(".login-li");
-  loginLink.textContent = "Log out";
+  loginLink.textContent = "logout";
   loginLink.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.reload();
@@ -128,17 +128,17 @@ const modaleGallery = document.getElementById("gallery-modale");
 document.getElementById("ouvrirModale").addEventListener("click", () => {
   const modale = document.getElementById("modaleProjets");
   modale.showModal();
-  getWorksModale();
+  getWorksModal();
 });
 fermer.addEventListener("click", () => modale.close());
 
-async function getWorksModale() {
+async function getWorksModal() {
   const urlWorks = "http://localhost:5678/api/works";
   try {
     const response = await fetch(urlWorks);
     if (response.status === 200) {
       const allWorks = await response.json();
-      displayWorksModale(allWorks);
+      displayWorksModal(allWorks);
     } else if (response.status === 500) {
       throw new Error(
         "Erreur serveur (500) : Une erreur interne est survenue."
@@ -151,7 +151,7 @@ async function getWorksModale() {
     console.error("Erreur :", error.message);
   }
 }
-function displayWorksModale(works) {
+function displayWorksModal(works) {
   const galleryModale = document.querySelector("#gallery-modale");
   galleryModale.innerHTML = "";
 
@@ -195,7 +195,7 @@ async function deleteWork(id) {
 
     if (response.status === 200 || response.status === 204) {
       console.log(`Projet ${id} supprimé avec succès.`);
-      getWorksModale();
+      getWorksModal();
       getWorks();
     } else if (response.status === 401) {
       throw new Error(
@@ -232,7 +232,7 @@ async function addWork(formData) {
 
     if (response.status === 201) {
       console.log("Projet ajouté avec succès.");
-      getWorksModale();
+      getWorksModal();
       getWorks();
     } else if (response.status === 400) {
       throw new Error(
@@ -354,7 +354,7 @@ async function remplirCategoriesForm() {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
-    console.error("🚨 Erreur :", error.message);
+    console.error("Erreur :", error.message);
   }
 }
 
