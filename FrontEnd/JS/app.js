@@ -196,6 +196,7 @@ async function deleteWork(id) {
     if (response.status === 200) {
       console.log(`Projet ${id} supprimé avec succès.`);
       getWorksModale();
+      getWorks();
     } else if (response.status === 401) {
       throw new Error(
         "Erreur serveur (401) : Vous n'êtes pas autorisé à supprimer cet élément."
@@ -232,6 +233,7 @@ async function addWork(formData) {
     if (response.status === 201) {
       console.log("Projet ajouté avec succès.");
       getWorksModale();
+      getWorks();
     } else if (response.status === 400) {
       throw new Error(
         "Erreur serveur (400) : Une erreur dans la requete est survenue."
