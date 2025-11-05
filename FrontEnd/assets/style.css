@@ -221,8 +221,12 @@ li:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
-  margin-left: 55px;
+  margin-top: 100px;
+}
+
+body.connected #portfolio .modif-proj {
+  margin-bottom: 70px;
+  margin-left: 100px;
 }
 
 .div-container {
@@ -231,6 +235,7 @@ li:hover {
   display: flex;
   justify-content: space-evenly;
   margin: 35px auto;
+  margin-top: 60px;
 }
 
 .div-container > * {
@@ -413,7 +418,6 @@ footer nav ul li {
   justify-content: center;
   align-items: baseline;
   gap: 50px;
-  margin-bottom: 2em;
 }
 
 .modif-proj h2 {
@@ -422,11 +426,13 @@ footer nav ul li {
 
 .edit-project {
   cursor: pointer;
-  font-size: 0.9em;
-  color: #555;
   display: flex;
   align-items: center;
   gap: 5px;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 14px;
+  color: #000;
 }
 
 .edit-icon .fa-solid {

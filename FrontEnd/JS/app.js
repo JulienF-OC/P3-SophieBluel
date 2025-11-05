@@ -101,11 +101,13 @@ const token = localStorage.getItem("token");
 if (token) {
   console.log("Connexion utilisateur réussie");
   afficherLogOut();
+  document.body.classList.add("connected");
   document.querySelector(".edit-mode").style.display = "flex";
   document.querySelector(".edit-project").style.display = "inline";
   document.querySelector(".div-container").style.display = "none";
 } else {
   console.log("Echec de la connexion utilisateur");
+  document.body.classList.remove("connected");
 }
 
 function afficherLogOut() {
