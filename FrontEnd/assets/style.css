@@ -713,5 +713,7 @@ dialog h3 {
   transition: opacity 0.3s ease;
 }
 
-.modaleAdd.enabled {
+#btnValider.active {
+  background-color: #1d6154;
+  color: white;
 }

@@ -43,7 +43,7 @@ async function getCategories() {
     if (response.status === 200) {
       const json = await response.json();
       setAllFilter();
-      json.forEach((cat) => setDiv(cat));
+      json.forEach((cat) => setFilter(cat));
     } else if (response.status === 500) {
       throw new Error(
         "Erreur serveur (500) : Une erreur interne est survenue."
@@ -370,4 +370,33 @@ inputImage.addEventListener("change", () => {
     };
     reader.readAsDataURL(file);
   }
+});
+
+const btnValider = document.getElementById("btnValider");
+const titreInput = document.getElementById("titre");
+const categorySelect = document.getElementById("category");
+const imageInput = document.getElementById("image");
+
+function verifierChampsFormulaire() {
+  const tousRemplis =
+    titreInput.value.trim() !== "" &&
+    categorySelect.value.trim() !== "" &&
+    imageInput.files.length > 0;
+
+  if (tousRemplis) {
+    btnValider.disabled = false;
+    btnValider.classList.add("active");
+  } else {
+    btnValider.disabled = true;
+    btnValider.classList.remove("active");
+  }
+}
+
+titreInput.addEventListener("input", verifierChampsFormulaire);
+categorySelect.addEventListener("change", verifierChampsFormulaire);
+imageInput.addEventListener("change", verifierChampsFormulaire);
+
+ajoutForm.addEventListener("submit", () => {
+  btnValider.disabled = true;
+  btnValider.classList.remove("active");
 });
