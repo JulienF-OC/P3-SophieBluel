@@ -377,26 +377,30 @@ const titreInput = document.getElementById("titre");
 const categorySelect = document.getElementById("category");
 const imageInput = document.getElementById("image");
 
-function verifierChampsFormulaire() {
-  const tousRemplis =
-    titreInput.value.trim() !== "" &&
-    categorySelect.value.trim() !== "" &&
-    imageInput.files.length > 0;
+function verifierChamps() {
+  const titreOK = titreInput.value.trim() !== "";
+  const categorieOK = categorySelect.value.trim() !== "";
+  const imageOK = imageInput.files.length > 0;
 
-  if (tousRemplis) {
+  if (titreOK && categorieOK && imageOK) {
     btnValider.disabled = false;
-    btnValider.classList.add("active");
+    btnValider.style.backgroundColor = "#1D6154";
   } else {
     btnValider.disabled = true;
-    btnValider.classList.remove("active");
+    btnValider.style.backgroundColor = "#A7A7A7";
   }
 }
 
-titreInput.addEventListener("input", verifierChampsFormulaire);
-categorySelect.addEventListener("change", verifierChampsFormulaire);
-imageInput.addEventListener("change", verifierChampsFormulaire);
+titreInput.addEventListener("input", verifierChamps);
+categorySelect.addEventListener("change", verifierChamps);
+imageInput.addEventListener("change", verifierChamps);
 
-ajoutForm.addEventListener("submit", () => {
-  btnValider.disabled = true;
-  btnValider.classList.remove("active");
+retourGalerie.addEventListener("click", () => {
+  ajoutForm.reset();
+  verifierChamps();
+});
+
+document.getElementById("ouvrirModale").addEventListener("click", () => {
+  ajoutForm.reset();
+  verifierChamps();
 });
