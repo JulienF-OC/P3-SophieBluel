@@ -262,7 +262,7 @@ addPhotoBtn.addEventListener("click", () => {
   modaleTitre.textContent = "Ajout photo";
   const separationModale = document.getElementById("separationModale");
   separationModale.style.display = "none";
-  remplirCategoriesForm();
+  fillCategory();
 });
 
 const uploadZone = document.getElementById("uploadZone");
@@ -325,7 +325,7 @@ addForm.addEventListener("submit", async (e) => {
   addPhotoBtn.style.display = "block";
 });
 
-async function remplirCategoriesForm() {
+async function fillCategory() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
     if (response.status === 200) {
