@@ -32,7 +32,7 @@ function setFigure(data) {
   document.querySelector(".gallery").append(figure);
 }
 
-async function getCategories() {
+async function getCategory() {
   const url = "http://localhost:5678/api/categories";
   try {
     const response = await fetch(url);
@@ -45,7 +45,6 @@ async function getCategories() {
         "Erreur serveur (500) : Une erreur interne est survenue."
       );
     } else {
-      // Pour tout autre code inattendu
       throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
@@ -90,7 +89,7 @@ function setActiveFilter(selectedBtn) {
 }
 
 getWorks();
-getCategories();
+getCategory();
 
 const token = localStorage.getItem("token");
 
