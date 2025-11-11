@@ -1,7 +1,7 @@
-const form = document.querySelector(".log-form");
+const form = document.querySelector(".log-form"); // Ajout d'une constante prenant le formulaire
 
 form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+  event.preventDefault(); // On supprime l'événement par défault
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -18,8 +18,8 @@ form.addEventListener("submit", async (event) => {
 
     if (response.status === 200) {
       const data = await response.json();
-      localStorage.setItem("token", data.token);
-      window.location.href = "index.html";
+      localStorage.setItem("token", data.token); // Ici, on va stocker le token dans le localStorage
+      window.location.href = "index.html"; // On va rediriger ici l'utilisateur sur la page d'accueil si il y a connexion
     } else if (response.status === 401) {
       throw new Error(
         "Erreur serveur (401) : Les éléments d'authentification sont incorrects"
@@ -32,6 +32,7 @@ form.addEventListener("submit", async (event) => {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
+    // On va créer ici un nouvel élément qui affichera les messages d'erreurs sous le formulaire
     const errorMsg = document.createElement("p");
     errorMsg.classList.add("error-message-login");
     errorMsg.textContent = error.message;

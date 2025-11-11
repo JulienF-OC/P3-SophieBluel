@@ -1,6 +1,7 @@
-let allWorks = [];
-const gallery = document.querySelector(".gallery");
+let allWorks = []; // On créer un variable qui va stocker les éléments de la gallerie
+const gallery = document.querySelector(".gallery"); // On crée tout de suite une constante dont on va beaucoup se servir, qui prend la gallerie
 
+// Ici, création d'une fenêtre popup qui s'ouvre lors de la detection d'un message d'erreur
 function showError(message, containerSelector = "body") {
   const oldError = document.querySelector(".error-popup");
   if (oldError) oldError.remove();
@@ -11,6 +12,7 @@ function showError(message, containerSelector = "body") {
   container.appendChild(errorDiv);
 }
 
+//Ici c'est la fonction qui va appeler L'API pour trouver les travaux
 async function getWorks() {
   const url = "http://localhost:5678/api/works";
   try {
@@ -25,14 +27,18 @@ async function getWorks() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {}
+  } catch (error) {
+    showError(error.message);
+  }
 }
 
+//Cette fonction permets l'affichage des travaux
 function displayWorks(works) {
   gallery.innerHTML = "";
   works.forEach((work) => setFigure(work));
 }
 
+//Ici la fonction permets de générer le contenu HTML des travaux
 function setFigure(data) {
   const figure = document.createElement("figure");
   figure.innerHTML = `<img src="${data.imageUrl}" alt="${data.title}" />
@@ -40,6 +46,7 @@ function setFigure(data) {
   gallery.append(figure);
 }
 
+// On va récuperer ici les catégories via l'API
 async function getCategory() {
   const url = "http://localhost:5678/api/categories";
   try {
@@ -55,9 +62,12 @@ async function getCategory() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {}
+  } catch (error) {
+    showError(error.message);
+  }
 }
 
+//Cette fonction sert a créer le bouton de filtre "Tous"
 function setAllFilter() {
   const container = document.querySelector(".div-container");
   const allBtn = document.createElement("div");
@@ -70,6 +80,7 @@ function setAllFilter() {
   container.appendChild(allBtn);
 }
 
+//Ici, on va créer les autres boutons de filtre en récupérant les data des catégories
 function setFilter(data) {
   const div = document.createElement("div");
   div.textContent = data.name;
@@ -83,11 +94,13 @@ function setFilter(data) {
   document.querySelector(".div-container").append(div);
 }
 
+//On va mettre en place le fonctionnement des filtres
 function filterWorks(categoryId) {
   const filtered = allWorks.filter((work) => work.categoryId === categoryId);
   displayWorks(filtered);
 }
 
+//Cette fonction permet d'ajouter la classe active au filtre selectionné
 function setActiveFilter(selectedBtn) {
   const allBtns = document.querySelectorAll(".div-container div");
   allBtns.forEach((btn) => btn.classList.remove("active"));
@@ -97,11 +110,11 @@ function setActiveFilter(selectedBtn) {
 getWorks();
 getCategory();
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("token"); // On stocke le token de connexion
 
 if (token) {
-  ShowLogOut();
-  document.body.classList.add("connected");
+  ShowLogOut(); // Si connexion, on appelle la fonction qui change le nom "Login" en "Logout"
+  document.body.classList.add("connected"); // On ajoute la classe connecter au body pour ajuster les éléments qui s'ajoute lors de la connexion
   document.querySelector(".edit-mode").style.display = "flex";
   document.querySelector(".edit-project").style.display = "inline";
   document.querySelector(".div-container").style.display = "none";
@@ -109,11 +122,12 @@ if (token) {
   document.body.classList.remove("connected");
 }
 
+//Ici, on va changer le nom "Login" en "Logout"
 function ShowLogOut() {
   const loginLink = document.querySelector(".login-li");
   loginLink.textContent = "logout";
   loginLink.addEventListener("click", () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token"); // Ici on va retirer le token de connexion pour se déconnecter au clic sur le bouton "Logout"
     window.location.reload();
   });
 }
@@ -124,12 +138,14 @@ const close = document.getElementById("fermerModale");
 const modalForm = document.getElementById("ajoutForm");
 const modalGallery = document.getElementById("gallery-modale");
 
+//Permets d'ouvrir la modale au clic sur "modifier"
 document.getElementById("ouvrirModale").addEventListener("click", () => {
   modal.showModal();
   getWorksModal();
 });
 close.addEventListener("click", () => modal.close());
 
+//Cette fonction permets d'appeler les travaux dans l'API
 async function getWorksModal() {
   const urlWorks = "http://localhost:5678/api/works";
   try {
@@ -144,8 +160,12 @@ async function getWorksModal() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {}
+  } catch (error) {
+    showError(error.message);
+  }
 }
+
+//On permets ici l'affichage des travaux
 function displayWorksModal(works) {
   const galleryModal = document.querySelector("#gallery-modale");
   galleryModal.innerHTML = "";
@@ -153,6 +173,7 @@ function displayWorksModal(works) {
   works.forEach((work) => setFigureModal(work, galleryModal));
 }
 
+//On ajoute les éléments HTML des travaux
 function setFigureModal(data) {
   const figure = document.createElement("figure");
   figure.classList.add("figure-modale");
@@ -163,6 +184,7 @@ function setFigureModal(data) {
     </button>
   `;
 
+  //On ici supprimer les éléments au clic sur l'icone de poubelle
   figure.querySelector(".delete-btn").addEventListener("click", () => {
     deleteWork(data.id);
   });
@@ -170,6 +192,7 @@ function setFigureModal(data) {
   document.querySelector("#gallery-modale").append(figure);
 }
 
+//On va permettre ici la supression des éléments via un appel à l'API
 async function deleteWork(id) {
   if (!token) {
     alert("Vous devez être connecté pour supprimer un projet.");
@@ -199,9 +222,12 @@ async function deleteWork(id) {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {}
+  } catch (error) {
+    showError(error.message);
+  }
 }
 
+//On va permettre ici l'ajout d'éléments via un appel à l'API
 async function addWork(formData) {
   if (!token) {
     alert("Vous devez être connecté pour ajouter un projet.");
@@ -235,7 +261,9 @@ async function addWork(formData) {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {}
+  } catch (error) {
+    showError(error.message);
+  }
 }
 
 const addForm = document.getElementById("ajoutForm");
@@ -244,6 +272,7 @@ const separationModale = document.getElementById("separationModale");
 const galleryModal = document.getElementById("gallery-modale");
 const BackToGallery = document.getElementById("retourGalerie");
 
+//Ici, on permet au clic sur le bouton d'afficher le formulaire d'ajout en cachant le reste
 addPhotoBtn.addEventListener("click", () => {
   galleryModal.style.display = "none";
   addPhotoBtn.style.display = "none";
@@ -258,21 +287,7 @@ const browseBtn = document.getElementById("btnParcourir");
 const inputImage = document.getElementById("image");
 const previewImage = document.getElementById("preview");
 
-inputImage.addEventListener("change", () => {
-  const file = inputImage.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      preview.src = e.target.result;
-      preview.style.display = "block";
-      uploadZone.querySelector("i").style.display = "none";
-      uploadZone.querySelector("label").style.display = "none";
-      uploadZone.querySelector("p").style.display = "none";
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
+//On ajoute ici l'événement de retour à la gallerie
 BackToGallery.addEventListener("click", () => {
   const uploadZone = document.querySelector(".upload-zone");
   addForm.style.display = "none";
@@ -282,11 +297,11 @@ BackToGallery.addEventListener("click", () => {
   separationModale.style.display = "block";
   preview.src = "";
   preview.style.display = "none";
-  preview.src = "";
   preview.style.display = "none";
   uploadZone.classList.remove("preview-active");
 });
 
+//Ici, on créer la fonction d'ajout
 addForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -313,6 +328,7 @@ addForm.addEventListener("submit", async (e) => {
   separationModale.style.display = "block";
 });
 
+//On appel ici l'API pour ajouter les catégories dans la selection du formulaire
 async function fillCategory() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
@@ -335,9 +351,12 @@ async function fillCategory() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {}
+  } catch (error) {
+    showError(error.message);
+  }
 }
 
+//On permet ici l'ajout d'image
 inputImage.addEventListener("change", () => {
   const file = inputImage.files[0];
   const uploadZone = document.querySelector(".upload-zone");
@@ -357,6 +376,7 @@ const titleInput = document.getElementById("titre");
 const categorySelect = document.getElementById("category");
 const imageInput = document.getElementById("image");
 
+//On crée ici une fonction qui va vérifier que les champs sont bien remplis
 function checkInput() {
   const titleOK = titleInput.value.trim() !== "";
   const categoryOK = categorySelect.value.trim() !== "";
