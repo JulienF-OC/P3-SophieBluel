@@ -1,4 +1,5 @@
 let allWorks = [];
+const gallery = document.querySelector(".gallery");
 
 async function getWorks() {
   const url = "http://localhost:5678/api/works";
@@ -20,7 +21,6 @@ async function getWorks() {
 }
 
 function displayWorks(works) {
-  const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
   works.forEach((work) => setFigure(work));
 }
@@ -29,7 +29,7 @@ function setFigure(data) {
   const figure = document.createElement("figure");
   figure.innerHTML = `<img src="${data.imageUrl}" alt="${data.title}" />
   <figcaption>${data.title}</figcaption>`;
-  document.querySelector(".gallery").append(figure);
+  gallery.append(figure);
 }
 
 async function getCategory() {
@@ -250,7 +250,7 @@ async function addWork(formData) {
 
 const addForm = document.getElementById("ajoutForm");
 const addPhotoBtn = document.getElementById("ajouterPhotoBtn");
-
+const separationModale = document.getElementById("separationModale");
 const galleryModal = document.getElementById("gallery-modale");
 const BackToGallery = document.getElementById("retourGalerie");
 
@@ -259,7 +259,6 @@ addPhotoBtn.addEventListener("click", () => {
   addPhotoBtn.style.display = "none";
   addForm.style.display = "block";
   modaleTitre.textContent = "Ajout photo";
-  const separationModale = document.getElementById("separationModale");
   separationModale.style.display = "none";
   fillCategory();
 });
@@ -317,11 +316,11 @@ addForm.addEventListener("submit", async (e) => {
   formData.append("category", categorySelect.value);
 
   await addWork(formData);
-
   addForm.reset();
   addForm.style.display = "none";
   galleryModal.style.display = "grid";
   addPhotoBtn.style.display = "block";
+  separationModale.style.display = "block";
 });
 
 async function fillCategory() {
