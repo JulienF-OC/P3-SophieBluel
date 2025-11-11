@@ -1,6 +1,16 @@
 let allWorks = [];
 const gallery = document.querySelector(".gallery");
 
+function showError(message, containerSelector = "body") {
+  const oldError = document.querySelector(".error-popup");
+  if (oldError) oldError.remove();
+  const errorDiv = document.createElement("div");
+  errorDiv.classList.add("error-popup");
+  errorDiv.textContent = message;
+  const container = document.querySelector(containerSelector) || document.body;
+  container.appendChild(errorDiv);
+}
+
 async function getWorks() {
   const url = "http://localhost:5678/api/works";
   try {
@@ -15,9 +25,7 @@ async function getWorks() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {
-    console.error(" Erreur :", error.message);
-  }
+  } catch (error) {}
 }
 
 function displayWorks(works) {
@@ -47,9 +55,7 @@ async function getCategory() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {
-    console.error(" Erreur :", error.message);
-  }
+  } catch (error) {}
 }
 
 function setAllFilter() {
@@ -94,14 +100,12 @@ getCategory();
 const token = localStorage.getItem("token");
 
 if (token) {
-  console.log("Connexion utilisateur réussie");
   ShowLogOut();
   document.body.classList.add("connected");
   document.querySelector(".edit-mode").style.display = "flex";
   document.querySelector(".edit-project").style.display = "inline";
   document.querySelector(".div-container").style.display = "none";
 } else {
-  console.log("Echec de la connexion utilisateur");
   document.body.classList.remove("connected");
 }
 
@@ -121,7 +125,6 @@ const modalForm = document.getElementById("ajoutForm");
 const modalGallery = document.getElementById("gallery-modale");
 
 document.getElementById("ouvrirModale").addEventListener("click", () => {
-  const modal = document.getElementById("modaleProjets");
   modal.showModal();
   getWorksModal();
 });
@@ -141,9 +144,7 @@ async function getWorksModal() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {
-    console.error("Erreur :", error.message);
-  }
+  } catch (error) {}
 }
 function displayWorksModal(works) {
   const galleryModal = document.querySelector("#gallery-modale");
@@ -155,7 +156,6 @@ function displayWorksModal(works) {
 function setFigureModal(data) {
   const figure = document.createElement("figure");
   figure.classList.add("figure-modale");
-
   figure.innerHTML = `
     <img src="${data.imageUrl}" alt="${data.title}">
     <button class="delete-btn" data-id="${data.id}">
@@ -171,8 +171,6 @@ function setFigureModal(data) {
 }
 
 async function deleteWork(id) {
-  const token = localStorage.getItem("token");
-
   if (!token) {
     alert("Vous devez être connecté pour supprimer un projet.");
     return;
@@ -188,7 +186,6 @@ async function deleteWork(id) {
     });
 
     if (response.status === 200 || response.status === 204) {
-      console.log(`Projet ${id} supprimé avec succès.`);
       getWorksModal();
       getWorks();
     } else if (response.status === 401) {
@@ -202,18 +199,14 @@ async function deleteWork(id) {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {
-    console.error("Erreur :", error.message);
-  }
+  } catch (error) {}
 }
 
 async function addWork(formData) {
-  const token = localStorage.getItem("token");
   if (!token) {
     alert("Vous devez être connecté pour ajouter un projet.");
     return;
   }
-
   try {
     const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
@@ -225,7 +218,6 @@ async function addWork(formData) {
     });
 
     if (response.status === 201) {
-      console.log("Projet ajouté avec succès.");
       getWorksModal();
       getWorks();
     } else if (response.status === 400) {
@@ -243,9 +235,7 @@ async function addWork(formData) {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {
-    console.error("Erreur :", error.message);
-  }
+  } catch (error) {}
 }
 
 const addForm = document.getElementById("ajoutForm");
@@ -345,9 +335,7 @@ async function fillCategory() {
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
-  } catch (error) {
-    console.error("Erreur :", error.message);
-  }
+  } catch (error) {}
 }
 
 inputImage.addEventListener("change", () => {

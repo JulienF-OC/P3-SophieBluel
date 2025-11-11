@@ -18,10 +18,7 @@ form.addEventListener("submit", async (event) => {
 
     if (response.status === 200) {
       const data = await response.json();
-      console.log("Réponse API :", data);
-
       localStorage.setItem("token", data.token);
-      console.log("Token sauvegardé :", localStorage.getItem("token"));
       window.location.href = "index.html";
     } else if (response.status === 401) {
       throw new Error(
@@ -35,14 +32,9 @@ form.addEventListener("submit", async (event) => {
       throw new Error(`Erreur inattendue (${response.status})`);
     }
   } catch (error) {
-    console.error("Erreur :", error.message);
+    const errorMsg = document.createElement("p");
+    errorMsg.classList.add("error-message-login");
+    errorMsg.textContent = error.message;
+    form.appendChild(errorMsg);
   }
 });
-
-const token = localStorage.getItem("token");
-
-if (token) {
-  console.log("Connexion utilisateur réussie");
-} else {
-  console.log("Echec de la connexion utilisateur");
-}
