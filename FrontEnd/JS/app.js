@@ -143,7 +143,16 @@ document.getElementById("ouvrirModale").addEventListener("click", () => {
   modal.showModal();
   getWorksModal();
 });
-close.addEventListener("click", () => modal.close());
+
+close.addEventListener("click", () => {
+  modal.close();
+  const uploadZone = document.querySelector(".upload-zone");
+  //Purge complète de la zone d'upload
+  preview.src = "";
+  preview.style.display = "none";
+  preview.style.display = "none";
+  uploadZone.classList.remove("preview-active");
+});
 
 //Cette fonction permets d'appeler les travaux dans l'API
 async function getWorksModal() {

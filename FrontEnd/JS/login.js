@@ -21,12 +21,10 @@ form.addEventListener("submit", async (event) => {
       localStorage.setItem("token", data.token); // Ici, on va stocker le token dans le localStorage
       window.location.href = "index.html"; // On va rediriger ici l'utilisateur sur la page d'accueil si il y a connexion
     } else if (response.status === 401) {
-      throw new Error(
-        "Erreur serveur (401) : Les éléments d'authentification sont incorrects"
-      );
+      throw new Error("Erreur serveur (401) : Le mot de passe est incorrecte.");
     } else if (response.status === 404) {
       throw new Error(
-        "Erreur serveur (404) : L'adresse mail utilisée est incorrecte"
+        "Erreur serveur (404) : L'adresse mail utilisée n'est liée à aucun compte."
       );
     } else {
       throw new Error(`Erreur inattendue (${response.status})`);

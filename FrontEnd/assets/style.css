@@ -724,12 +724,12 @@ dialog h3 {
 }
 
 .log-form {
-  position: relative; /* permet de positionner le message à l'intérieur */
+  position: relative;
 }
 
 .error-message-login {
   position: absolute;
-  bottom: 85px; /* ou top: 100%; selon l’endroit souhaité */
+  bottom: 85px;
   left: 50%;
   transform: translateX(-50%);
   color: red;
@@ -743,22 +743,11 @@ dialog h3 {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(220, 53, 69, 0.95); /* rouge doux */
+  background-color: rgba(220, 53, 69, 0.95);
   color: white;
   padding: 12px 20px;
   border-radius: 6px;
   font-size: 0.95rem;
   z-index: 9999;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  animation: fadeout 6s forwards;
-}
-
-@keyframes fadeout {
-  0%,
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
