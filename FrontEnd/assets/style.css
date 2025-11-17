@@ -92,7 +92,7 @@ video {
   vertical-align: baseline;
   background-color: #fffef8;
 }
-/* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -409,8 +409,8 @@ footer nav ul li {
 .edit-mode {
   position: relative;
   left: 50%;
-  width: 100vw; /* largeur de la fenêtre */
-  margin-left: -50vw; /* décale pour contrer le centrage du body */
+  width: 100vw;
+  margin-left: -50vw;
   background-color: black;
   height: 60px;
   display: flex;
@@ -504,8 +504,8 @@ dialog h3 {
   font-family: "Syne";
   border-radius: 25px;
   display: flex;
-  justify-content: center; /* centre horizontalement le texte */
-  align-items: center; /* centre verticalement le texte */
+  justify-content: center;
+  align-items: center;
   border: none;
   cursor: pointer;
   margin: 30px auto 0 auto;
